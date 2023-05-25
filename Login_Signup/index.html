@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-slate-900 font-serif m-5">
+    
+    <!-- Direct to sign up page -->
+
+    <div class="flex place-content-end">
+        <p class="text-white py-1 mx-4">Doesn't have an account</p>
+        <a href="signup.html">
+            <button class="bg-white hover:bg-slate-400 active:bg-white px-6 py-1 rounded-lg">Sign Up</button>
+        </a>
+    </div>
+
+    <br>
+
+    <!-- Sign in to existing account -->
+    <div class="bg-white p-5 flex flex-col justify-center items-center rounded-2xl shadow-black
+        w-11/12 md:w-96 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+    >
+        
+        <h1 class="text-4xl text-center font-mono m-7 font-extrabold">Sign in</h1>
+        
+        <input type="text" placeholder="Username" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm
+            rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        >
+        
+        <br>
+        
+        <input type="password" placeholder="Password" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm
+            rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        >
+        
+        <br>
+
+        <a class="text-center text-sm" href="#">Forget Password?</a>
+        
+        <br>
+        
+        <button class="bg-sky-500 hover:bg-sky-700 active:bg-sky-500 px-6 py-1 rounded-lg text-white">Confirm</button>
+    </div>
+
+</body>
+</html>
