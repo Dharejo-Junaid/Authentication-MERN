@@ -1,7 +1,7 @@
 const playButton = document.querySelector("button");
 playButton.addEventListener("click", play);
 
-let rd1 = 0, rd2=0;
+let randomNo1 = 0, randomNo2=0;
 
 // Selecting image Tags;
 const image1 = document.querySelector(".image1");
@@ -24,19 +24,19 @@ function play() {
 function changeImage() {
 
     // getting random number b/w (1-6);
-    rd1 = getRandom();
-    rd2 = getRandom();
+    randomNo1 = getRandom();
+    randomNo2 = getRandom();
 
     // selecting random image using random number;
-    let image1Path = "images/dice" + rd1 + ".png";
-    let image2Path = "images/dice" + rd2 + ".png";
+    let image1Path = "images/dice" + randomNo1 + ".png";
+    let image2Path = "images/dice" + randomNo2 + ".png";
 
     // changing image on "img" tag;
     image1.setAttribute("src", image1Path);
     image2.setAttribute("src", image2Path);
 
     count++;
-    if(count==6) {
+    if(count===6) {
         showResult();
         clearInterval(imageInterval);
     }
@@ -46,10 +46,10 @@ function changeImage() {
 function showResult() {
     const heading = document.querySelector("h1");
 
-    if(rd1 > rd2)
+    if(randomNo1 > randomNo2)
         heading.innerText = "😁 Player 1 Wins!";
 
-    else if(rd2 > rd1)
+    else if(randomNo2 > randomNo1)
         heading.innerText = "Player 2 Wins! 😁";
 
     else
