@@ -28,8 +28,8 @@ function changeImage() {
     randomNo2 = getRandom();
 
     // selecting random image using random number;
-    let image1Path = "images/dice" + randomNo1 + ".png";
-    let image2Path = "images/dice" + randomNo2 + ".png";
+    let image1Path = `images/dice${randomNo1}.png`;
+    let image2Path = `images/dice${randomNo2}.png`;
 
     // changing image on "img" tag;
     image1.setAttribute("src", image1Path);
