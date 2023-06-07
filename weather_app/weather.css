@@ -38,6 +38,19 @@ body {
     width: 80%;
 }
 
+#errorMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorHeader {
+    color: rgb(252, 48, 48);
+    margin: 5px;
+    text-shadow: 2px 2px 5px black;
+}
+
 h1 {
     margin: 20px;
 }
@@ -52,4 +65,8 @@ table {
     box-shadow: 3px 2px 10px rgba(128, 128, 128, 0.767),
                 -2px -3px 10px rgba(128, 128, 128, 0.801);
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hide {
+    display: none;
 }

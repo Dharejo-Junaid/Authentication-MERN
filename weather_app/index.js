@@ -1,17 +1,19 @@
-// API key
-const API_KEY = `3265874a2c77ae4a04bb96236a642d2f`
-
 // HTML elements;
 const search = document.querySelector("#search");
 const datalist = document.querySelector("#datalist");
 const button = document.querySelector("button");
-const message = document.querySelector("#message");
 
 // action listener to button;
 button.addEventListener("click", checkButtonEvent);
 
+// add listener to search-bar;
+search.addEventListener("input", addSuggestions);
+
 // "input" eventListener on search bar;
 let cities = [];
+
+// calling function to get cities using API;
+getCities();
 
 // this function uses API and store all the city names into "cities" ARRAY;
 function getCities() {
@@ -32,63 +34,27 @@ function getCities() {
         });
 }
 
-// calling function to get cities using API;
-getCities();
-
-
-search.addEventListener("input", addSuggestions);
-
-
+// search-bar listener to add to give suggestions;
 function addSuggestions() {
 
     let city = new String(search.value).toLowerCase();
 
+    // getting the cities matches to user input;
     let matchedCities = cities.filter(element =>
         new String(element).toLowerCase().startsWith(city));
 
+    // adding cities to suggestion;
     matchedCities = matchedCities.map(element => `<option value="${element}">${element}</option>`);
-
     datalist.innerHTML = matchedCities;
 }
 
-
-// object to store data obtain from weather API;
-let weatherData = {};
-
-// function on button;
+// check button listener;
 function checkButtonEvent() {
-
-    // setting visible to loading;
-    message.innerHTML = "Loading...";
-    message.classList.remove("hide");
-
     const city = search.value;
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+    if(city == "") {
+        return;
+    }
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            weatherData.temperature = `${data["main"]["temp"]}<sup>o</sup>C`;
-            weatherData.atmosphere = data["weather"][0]["description"];
-            weatherData.pressure = data["main"]["pressure"];
-            weatherData.city = data["name"];
-            weatherData.country = data["sys"]["country"];
-
-            let currentTime = getCurrentTime(data["timezone"]);
-            weatherData.time = currentTime.toLocaleTimeString();
-            weatherData.hours = currentTime.getHours();
-
-            message.innerHTML = weatherData.time;
-            window.location.href = "weather.html";
-    });
-}
-
-// caculate time from timezone;
-function getCurrentTime(timezone) {
-    const currentTime = new Date();
-    const localTimezoneOffset = currentTime.getTimezoneOffset() * 60; // Get local timezone offset in seconds
-    const targetTime = new Date(currentTime.getTime() + (timezone + localTimezoneOffset) * 1000);
-  
-    return targetTime;
+    window.location.href = `weather.html?city=${city}`;
 }
