@@ -2,7 +2,6 @@
 const API_KEY = `3265874a2c77ae4a04bb96236a642d2f`;
 
 const body = document.querySelector("body");
-const lottiePlayer = document.querySelector("#lottiePlayer");
 const temperature = document.querySelector("#temperature");
 const atmosphere = document.querySelector("#atmosphere");
 const pressure = document.querySelector("#pressure");
@@ -25,8 +24,9 @@ const snow = "https://assets8.lottiefiles.com/private_files/lf30_xiu4XR.json";
 const clouds = "https://assets2.lottiefiles.com/temp/lf20_ZCwXJD.json";
 const mist = "https://assets5.lottiefiles.com/temp/lf20_kOfPKE.json";
 const smoke = "https://assets2.lottiefiles.com/packages/lf20_4fgslMc0Si.json";
+const fog = "https://assets2.lottiefiles.com/packages/lf20_4fgslMc0Si.json"; // same as smoke
 const dust = "https://assets4.lottiefiles.com/packages/lf20_ci4fh3nd.json";
-const fog = "https://assets2.lottiefiles.com/packages/lf20_4fgslMc0Si.json"; // fog and smoke has same littiefile;
+const haze = "https://assets4.lottiefiles.com/packages/lf20_ci4fh3nd.json"; // same as dust
 const tornado = "https://assets4.lottiefiles.com/packages/lf20_eX03JvdrTy.json";
 
 const morning = "https://assets2.lottiefiles.com/packages/lf20_qlkhxhrs.json";
@@ -84,7 +84,7 @@ function setBackgound() {
 }
 
 
-let selectedFile = "";
+let selectedFile;
 
 function setLottieFile() {
 
@@ -114,15 +114,13 @@ function setLottieFile() {
             break;
         
         case "smoke":
+        case "fog":
             selectedFile = smoke;
             break;
         
         case "dust":
+        case "haze":
             selectedFile = dust;
-            break;
-        
-        case "fog":
-            selectedFile = fog;
             break;
 
         case "tornado":
@@ -135,7 +133,8 @@ function setLottieFile() {
             else if(isNight) selectedFile = night;
     }
 
-    lottiePlayer.setAttribute("src", selectedFile);
+    // selecting the div to place lottieFile;
+    document.querySelector(".mostInner").innerHTML += `<lottie-player src="${selectedFile}" id="lottiePlayer" background="transparent"  speed="1.5"  style="width: 200px; height: 200px;" loop  autoplay></lottie-player>`;
 }
 
 // function on button;
