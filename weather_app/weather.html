@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css">
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+
+<div class="outer">
+    <div class="inner">
+
+        <dir id="errorMessage">
+            <h2 class="errorHeader hide">Something went wrong</h2>
+            <h3 class="errorHeader hide">SORRY FOR IMCOMPLIANCE!...</h3>
+        </dir>
+
+        <div class="mostInner">
+            <!-- Heading -->
+            <h1>Weather</h1>
+        </div>
+
+        <table>
+            <!-- Tempterure -->
+            <tr>
+                <td>Temperature</td>
+                <td id="temperature">N/A</td>
+            </tr>
+
+            <!-- Atmosphere -->
+            <tr>
+                <td>Atmosphere</td>
+                <td id="atmosphere">N/A</td>
+            </tr>
+
+            <!-- Pressure -->
+            <tr>
+                <td>Pressure</td>
+                <td id="pressure">N/A</td>
+            </tr>
+
+            <!-- City -->
+            <tr>
+                <td>City</td>
+                <td id="city">N/A</td>
+            </tr>
+
+            <!-- Country -->
+            <tr>
+                <td>Country</td>
+                <td id="country">N/A</td>
+            </tr>
+
+            <!-- Time -->
+            <tr>
+                <td>Time</td>
+                <td id="time">N/A</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    
+    
+
+    <script src="weather.js"></script>
+
+</body>
+</html>
