@@ -8,20 +8,30 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="weather.css">
 
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 </head>
-<body class="night-background">
+<body style="background-color: rgb(199, 187, 20);">
 
 <div class="outer">
     <div class="inner">
-        
 
         <dir id="errorMessage">
             <h2 class="errorHeader hide">Something went wrong</h2>
             <h3 class="errorHeader hide">SORRY FOR IMCOMPLIANCE!...</h3>
         </dir>
 
-        <!-- Heading -->
-        <h1>Weather</h1>
+
+        <div class="mostInner">
+            <!-- Heading -->
+            <h1>Weather</h1>
+
+            <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
+            <!-- <lottie-player></lottie-player> -->
+            <lottie-player id="lottiePlayer" background="transparent"  speed="1.5"  style="width: 200px; height: 200px;" loop  autoplay></lottie-player>
+
+            <!-- src="https://assets5.lottiefiles.com/packages/lf20_kljxfos1.json"  -->
+        </div>
 
         <table>
             <!-- Tempterure -->
@@ -62,6 +72,9 @@
         </table>
     </div>
 </div>
+
+    
+    
 
     <script src="weather.js"></script>
 
