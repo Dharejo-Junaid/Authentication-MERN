@@ -33,20 +33,10 @@ const morning = "https://assets2.lottiefiles.com/packages/lf20_qlkhxhrs.json";
 const day = "https://assets5.lottiefiles.com/packages/lf20_5i5k8eh3.json";
 const night = "https://assets2.lottiefiles.com/packages/lf20_fozoyhia.json";
 
-let isMorning = false;
-let isDay = false;
-let isNight = false;
-let weatherStatus = "";
-
-// object to store data obtain from weather API;
-let weatherData = {};
-
 getWeatherInfo();
 
 // this method uses index.js file's data and display on this page;
-function displayWeatherData() {
-    setBackgound();
-    setLottieFile();
+function displayWeatherData(weatherData) {
 
     temperature.innerHTML = weatherData.temperature;
     atmosphere.innerHTML = weatherData.atmosphere;
@@ -58,13 +48,10 @@ function displayWeatherData() {
 
 // this function set backgound image as per the time
 // Morning [6, 12) << = >> Day [12, 20) << = >> Night;
-function setBackgound() {
+function setBackgound(time) {
     
     // First remove all the classes body TAG has;
     body.classList.forEach(className => body.classList.remove(className));
-
-    // let time = weatherData.hours;
-    let time = weatherData.hours;
 
     // add backgound image as per time;
     if(time >= 6 && time < 12) {
@@ -83,10 +70,9 @@ function setBackgound() {
     }
 }
 
+function setLottieFile(weatherStatus, time) {
 
-let selectedFile;
-
-function setLottieFile() {
+    let selectedFile;
 
     switch(weatherStatus.toLowerCase()) {
         case "thunderstorm":
@@ -128,9 +114,9 @@ function setLottieFile() {
             break;
 
         default:
-            if(isMorning) selectedFile = morning;
-            else if(isDay) selectedFile = day;
-            else if(isNight) selectedFile = night;
+            if(time >= 6 && time < 12) selectedFile = morning;
+            else if(time >= 12 && time < 20) selectedFile = day;
+            else selectedFile = night;
     }
 
     // selecting the div to place lottieFile;
@@ -146,7 +132,7 @@ function getWeatherInfo() {
         .then(response => response.json())
         .then(data => {
 
-            const status = data["cod"];
+            const status = data.cod;
             if(status == "404") {
                 errorHeaders[0].classList.remove("hide");
                 errorHeaders[1].classList.remove("hide");
@@ -154,8 +140,10 @@ function getWeatherInfo() {
             }
 
             // getting status to to set a lottiefile;
-            weatherStatus = data.weather[0].main;
+            const weatherStatus = data.weather[0].main;
 
+            // object to store data obtain from weather API;
+            let weatherData = {};
             weatherData.temperature = `${data.main.temp} <sup>o</sup>C`;
             weatherData.atmosphere = data.weather[0].description;
             weatherData.pressure = `${data.main.pressure} hPa`;
@@ -164,9 +152,12 @@ function getWeatherInfo() {
 
             let currentTime = getCurrentTime(data.timezone);
             weatherData.time = currentTime.toLocaleTimeString();
-            weatherData.hours = currentTime.getHours();
+            const hours = currentTime.getHours();
 
-            displayWeatherData();
+            // updating data;
+            setBackgound(hours);
+            setLottieFile(weatherStatus, hours);
+            displayWeatherData(weatherData);
     });
 }
 
