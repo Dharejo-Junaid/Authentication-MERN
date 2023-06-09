@@ -23,11 +23,12 @@ body {
     background-image: url("images/night.jpg");
 }
 
-.outer, .inner {
+.outer, .inner, .mostInner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .outer {
@@ -36,6 +37,10 @@ body {
 
 .inner {
     width: 80%;
+}
+
+.mostInner {
+    flex-direction: row;
 }
 
 #errorMessage {
