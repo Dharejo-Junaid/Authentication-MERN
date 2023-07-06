@@ -1,23 +1,26 @@
 import { useState } from "react";
 import SLBar from "./components/slBar/SLBar";
 import LoginForm from "./components/loginForm/LoginForm";
+import SignupForm from "./components/signupForm/SignupForm";
 
 const App = () => {
 
+  const [isLogin, setIslogin] = useState(true);
+
   const login = () => {
-    console.log("Login button clicked");
+    setIslogin(true);
   }
 
   const signup = () => {
-    console.log("Signup button clicked");
+    setIslogin(false);
   }
-
-  const [isLogin, setIslogin] = useState(true);
 
   return(
     <>
       <SLBar handleLogin={login} handleSignup={signup} />
       {isLogin && <LoginForm />}
+      {!isLogin && <SignupForm />}
+      
     </>
   );
 }

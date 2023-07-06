@@ -1,16 +1,16 @@
-.login-from-outer-container,
-.login-from-inner-container {
+.signup-from-outer-container,
+.signup-from-inner-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login-from-outer-container {
+.signup-from-outer-container {
     height: calc(100vh - 70px);
 }
 
-.login-from-inner-container {
+.signup-from-inner-container {
     margin-top: 70px;
     padding: 40px;
     border-radius: 10px;
@@ -18,16 +18,16 @@
                 -3px -2px 5px rgb(0, 0, 0, 0.25);
 }
 
-.login-form {
+.signup-form {
     display: flex;
     flex-direction: column;
 }
 
-.login-form label {
+.signup-form label {
     font-size: 14px;
 }
 
-.login-form input {
+.signup-form input {
     outline: none;
     border: 1px solid gray;
     border-radius: 3px;
@@ -38,7 +38,7 @@
     width: 250px;
 }
 
-.login-form button {
+.signup-form button {
     font-size: 17px;
     padding: 6px;
     background-color: black;
@@ -48,10 +48,10 @@
     color: white;
 }
 
-.login-form button:hover {
+.signup-form button:hover {
     opacity: 0.8;
 }
 
-.login-form button:active {
+.signup-form button:active {
     opacity: 0.6;
 }
