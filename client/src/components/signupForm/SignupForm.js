@@ -1,22 +1,54 @@
 import "./SignupForm.css";
+import { useState } from "react";
+import axios from "axios";
 
 const SignupForm = () => {
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if(password !== confirmPassword) {
+            // show password and confirm passwords are not same;
+            return;
+        }
+        
+        const res = await axios.post("/signup", {username: username, email: email, password: password});
+
+        const {success, message} = res.data;
+        if(success) {
+            console.log(success, "\n", message);
+        }
+
+        else {
+            console.log(message);
+        }
+
+        console.log(res);
+    }
+
+    
+
     return (
         <div className="signup-from-outer-container">
             <div className="signup-from-inner-container">
                 <h2>Signup Here</h2>
-                <form className="signup-form" action="#" method="post">
+                <form className="signup-form" onSubmit={handleSubmit}>
                     <label htmlFor="username">Username</label>
-                    <input id="username" name="username" type="text" required/>
+                    <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} required/>
 
                     <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" required/>
+                    <input id="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
 
                     <label htmlFor="password">Password</label>
-                    <input id="password" name="password" type="password" min="6" required/>
+                    <input id="password" type="password" min="6" value={password} onChange={(event) => setPassword(event.target.value)} required/>
 
                     <label htmlFor="confirm-password">Confirm Password</label>
-                    <input id="confirm-password" name="confirmPassword" type="password" min="6" required/>
+                    <input id="confirm-password" type="password" min="6" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required/>
 
                     <button type="submit">Sign up</button>
                 </form>
