@@ -8,35 +8,31 @@ const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [fromMessage, setFormMessage] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         if(password !== confirmPassword) {
-            // show password and confirm passwords are not same;
+            setFormMessage("Password and Confirm password are not same");
             return;
         }
         
         const res = await axios.post("/signup", {username: username, email: email, password: password});
 
         const {success, message} = res.data;
-        if(success) {
-            console.log(success, "\n", message);
-        }
 
-        else {
-            console.log(message);
-        }
-
-        console.log(res);
+        setFormMessage(message);
     }
 
-    
+    const token = localStorage.getItem("token");
+    if(token) setFormMessage(token);
 
     return (
         <div className="signup-from-outer-container">
             <div className="signup-from-inner-container">
                 <h2>Signup Here</h2>
+                <p>{fromMessage}</p>
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <label htmlFor="username">Username</label>
                     <input id="username" type="text" value={username} onChange={(event) => setUsername(event.target.value)} required/>
