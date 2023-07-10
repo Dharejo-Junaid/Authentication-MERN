@@ -17,14 +17,7 @@ const LoginForm = () => {
         setFormMessage(message);
         if(success) {
             localStorage.setItem("token", token);
-            setFormMessage(token);
         }
-
-        else {
-
-        }
-        
-        // TODO: -> Manuplations on client side after the response;
     }
 
     return (

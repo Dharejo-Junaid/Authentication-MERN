@@ -5,6 +5,10 @@ const { sign } = require("jsonwebtoken");
 const userLogin = async (req, res) => {
 
     const { email, password } = req.body;
+    if(! email || ! password) return res.send({
+        success: false,
+        message: "Email and password required"
+    });
 
     let user = await User.findOne({email: email});
     
@@ -27,8 +31,6 @@ const userLogin = async (req, res) => {
 
         const hashID = await hash(user._id.toString(), 10);
         const token = sign({hashID: hashID}, process.env.JWT_SECRET);
-
-        console.log(hashID, token);
 
         return res.json({
             success: true,

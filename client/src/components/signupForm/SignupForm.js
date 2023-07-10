@@ -21,12 +21,8 @@ const SignupForm = () => {
         const res = await axios.post("/signup", {username: username, email: email, password: password});
 
         const {success, message} = res.data;
-
         setFormMessage(message);
     }
-
-    const token = localStorage.getItem("token");
-    if(token) setFormMessage(token);
 
     return (
         <div className="signup-from-outer-container">

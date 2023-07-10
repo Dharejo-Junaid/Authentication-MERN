@@ -3,11 +3,10 @@ const { hash } = require("bcrypt");
 const nodemailer = require("nodemailer");
 
 const createUser = async (req, res) => {
-    console.log(req.body);
     const {username, email, password} = req.body;
 
     let user = await User.findOne({email: email});
-    console.log(user);
+
     if(user) {
         return res.json({
             success: false,
@@ -15,7 +14,6 @@ const createUser = async (req, res) => {
         });
     }
 
-    console.log(username, email, password);
     const hashPass = await hash(password, 10);
 
     // create user;
@@ -35,7 +33,6 @@ const createUser = async (req, res) => {
     
     // send mail to user to verify his/her account;
     sendMailToUser(email, _id, hashID, res);
-    console.log(email);
 }
 
 const sendMailToUser = (emailTo, _id, hashID, res) => {
