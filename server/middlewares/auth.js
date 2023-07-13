@@ -17,8 +17,7 @@ const auth = async (req, res, next) => {
     if(user.isVerfied) {
         return res.json({
             success: true,
-            message: "Successfully login",
-            token: token
+            message: "Successfully login"
         });
     }
 

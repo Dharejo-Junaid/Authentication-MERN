@@ -37,7 +37,7 @@ const createUser = async (req, res) => {
 
 const sendMailToUser = (emailTo, _id, hashID, res) => {
 
-    const url = `http://localhost:5000/verify?hashID=${hashID}`;
+    const url = `http://localhost:3000/verify?hashID=${hashID}`;
     const html = `<p>Please verify your email</p>
         <a href=${url}>${url}</a>
     `;

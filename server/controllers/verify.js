@@ -11,11 +11,16 @@ const verify = async (req, res) => {
         await User.findByIdAndUpdate(_id, {isVerfied: true});
         const token = sign({_id: _id}, process.env.JWT_SECRET);
 
-        // TODO:
         return res.json({
             success: true,
-            message: "You have successfully verfied your account",
-            token: token
+            message: "You have successfully verfied your account"
+        });
+    }
+
+    else {
+        return res.json({
+            success: false,
+            message: "Verification unsuccessful"
         });
     }
 }

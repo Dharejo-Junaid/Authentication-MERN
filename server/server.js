@@ -10,7 +10,7 @@ const verify = require("./routes/verify");
 
 app.use("/login", login);
 app.use("/signup", signup);
-app.use("/verify", verify);
+app.use("/verify/", verify);
 
 app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3"]});
